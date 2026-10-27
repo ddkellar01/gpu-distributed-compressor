@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  gpu-trainer:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ..:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python src/train.py --deepspeed --deepspeed_config configs/ds_config_zero2.json
