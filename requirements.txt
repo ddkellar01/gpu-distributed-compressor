@@ -1,5 +1,8 @@
-torch>=2.2.0
-deepspeed>=0.13.0
-transformers>=4.38.0
-triton>=2.2.0
-numpy
+torch>=2.1.0
+torchvision>=0.16.0
+deepspeed>=0.12.0
+triton>=2.1.0
+numpy>=1.24.0
+transformers>=4.35.0
+accelerate>=0.24.0
+tqdm>=4.66.0
