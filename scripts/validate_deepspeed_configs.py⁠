@@ -1,0 +1,20 @@
+import json
+import glob
+import sys
+
+def validate_json_configs():
+    config_files = glob.glob("configs/*.json")
+    print(f"[VALIDATE] Checking {len(config_files)} DeepSpeed JSON configs...")
+    
+    for cfg_path in config_files:
+        try:
+            with open(cfg_path, 'r') as f:
+                data = json.load(f)
+                assert "zero_optimization" in data, f"Missing 'zero_optimization' key in {cfg_path}"
+                print(f"  ✓ Valid: {cfg_path} (Stage {data['zero_optimization'].get('stage')})")
+        except Exception as e:
+            print(f"  ✗ Invalid JSON in {cfg_path}: {e}")
+            sys.exit(1)
+
+if __name__ == "__main__":
+    validate_json_configs()
