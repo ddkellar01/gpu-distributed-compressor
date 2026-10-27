@@ -1,0 +1,12 @@
+import torch
+from models.moe_layer import MixtureOfExperts
+
+def test_moe_forward():
+    moe = MixtureOfExperts(num_experts=4, d_model=128, d_ff=256)
+    x = torch.randn(2, 32, 128)
+    out = moe(x)
+    assert out.shape == x.shape
+    print("[PASS] Mixture of Experts Layer Test")
+
+if __name__ == "__main__":
+    test_moe_forward()
