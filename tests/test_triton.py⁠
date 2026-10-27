@@ -1,0 +1,17 @@
+import torch
+from compression.triton_quant import triton_quantize
+
+def test_triton_kernel():
+    if not torch.cuda.is_available():
+        print("[SKIP] Triton kernel test requires CUDA device.")
+        return
+
+    x = torch.randn(4096, device="cuda", dtype=torch.float32)
+    q, scale = triton_quantize(x)
+    
+    assert q.dtype == torch.int8
+    assert q.shape == x.shape
+    print("[PASS] Triton INT8 Quantization Kernel Test")
+
+if __name__ == "__main__":
+    test_triton_kernel()
