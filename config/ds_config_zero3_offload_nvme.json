@@ -1,0 +1,22 @@
+{
+  "train_batch_size": "auto",
+  "train_micro_batch_size_per_gpu": "auto",
+  "gradient_accumulation_steps": "auto",
+  "zero_optimization": {
+    "stage": 3,
+    "offload_optimizer": {
+      "device": "nvme",
+      "nvme_path": "/local/nvme",
+      "buffer_count": 5,
+      "pipeline_read": true
+    },
+    "offload_param": {
+      "device": "nvme",
+      "nvme_path": "/local/nvme",
+      "buffer_count": 5
+    }
+  },
+  "bf16": {
+    "enabled": true
+  }
+}
