@@ -1,0 +1,12 @@
+import unittest
+from utils.hardware_probe import inspect_hardware_environment
+
+class TestHardwareProbe(unittest.TestCase):
+    def test_probe(self):
+        info = inspect_hardware_environment()
+        self.assertIn("cpu_count", info)
+        self.assertIn("system_ram_gb", info)
+        self.assertIn("cuda_available", info)
+
+if __name__ == "__main__":
+    unittest.main()
